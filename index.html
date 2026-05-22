@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Academic website of Binghong Li, an HKUST graduate researcher working on algorithmic fairness, recommender systems, fintech strategy, and financial market disclosure."
+    >
+    <meta name="author" content="Binghong Li">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Binghong Li | Academic Website">
+    <meta
+      property="og:description"
+      content="Research on algorithmic fairness, recommender systems, fintech strategy, and financial market disclosure."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://joeli558.github.io/">
+    <link rel="canonical" href="https://joeli558.github.io/">
+    <title>Binghong Li | Academic Website</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <nav class="nav-shell" aria-label="Main navigation">
+        <a class="brand" href="#home" aria-label="Back to home">
+          <span class="brand-mark" aria-hidden="true" data-brand-mark>BL</span>
+          <span>
+            <strong data-profile-name>Binghong Li</strong>
+            <small data-nav-subtitle>HKUST | Algorithmic Markets | FinTech</small>
+          </span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="site-menu" id="site-menu">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#moments">Moments</a>
+          <a href="#papers">Papers</a>
+          <a href="#education">Education</a>
+          <a href="#files">Files</a>
+          <a href="#contact">Contact</a>
+          <a href="admin.html">Admin</a>
+          <button class="icon-button" type="button" data-theme-toggle aria-label="Toggle color theme" title="Toggle color theme">
+            <span data-theme-icon aria-hidden="true">T</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero personal-hero" id="home" aria-label="Home">
+        <div class="hero-overlay"></div>
+        <div class="hero-content personal-hero-content">
+          <div class="hero-text">
+            <p class="eyebrow" data-hero-kicker>HKUST Graduate Researcher | Recommender Systems | FinTech</p>
+            <h1 data-hero-title>Binghong Li</h1>
+            <p class="hero-copy" data-hero-summary>
+              I study how algorithms shape digital markets, from popularity bias in e-commerce recommender systems
+              to disclosure structure, information-horizon arbitrage, and fintech strategy.
+            </p>
+            <div class="hero-actions" aria-label="Primary actions">
+              <a class="button primary" href="#papers">View Papers</a>
+              <a class="button secondary" href="#contact">Get in Touch</a>
+            </div>
+          </div>
+
+          <aside class="portrait-card" aria-label="Profile summary">
+            <img data-profile-photo src="assets/binghong-li.jpg" alt="Portrait of Binghong Li">
+            <div class="portrait-body">
+              <h2 data-card-name>Binghong Li</h2>
+              <p data-card-summary>Graduate study at The Hong Kong University of Science and Technology.</p>
+              <ul class="profile-facts" data-profile-facts></ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="metric-band" id="about" aria-label="Academic overview" data-metrics></section>
+
+      <section class="section" id="research">
+        <div class="section-heading">
+          <p class="eyebrow">Research Agenda</p>
+          <h2>Research Interests</h2>
+          <p data-research-intro>
+            My current work connects algorithmic governance, digital commerce, and financial market transparency.
+            I am especially interested in how platform algorithms and disclosure structures redistribute attention,
+            exposure, and informational advantage.
+          </p>
+        </div>
+
+        <div class="focus-grid" data-research-grid></div>
+      </section>
+
+      <section class="section moments-section" id="moments">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">Academic Moments</p>
+            <h2>Photos From Study and Exchange</h2>
+          </div>
+          <p data-moments-intro>
+            A few academic moments from exchange study, classroom collaboration, and conference-style learning environments.
+          </p>
+        </div>
+
+        <div class="moment-viewer">
+          <div class="moment-frame">
+            <img data-moment-image src="assets/background-auditorium.jpg" alt="Academic moment">
+          </div>
+          <div class="moment-panel">
+            <p class="project-type">Interactive gallery</p>
+            <h3 data-moment-title>International exchange classroom</h3>
+            <p data-moment-caption>Group learning experience in a lecture hall setting.</p>
+            <div class="moment-actions" data-moment-actions></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section paper-section" id="papers">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">Publications and Working Papers</p>
+            <h2>Selected Papers</h2>
+          </div>
+          <p data-papers-intro>
+            A compact research portfolio covering recommender-system fairness, fintech strategy, and algorithmic disclosure behavior in financial markets.
+          </p>
+        </div>
+
+        <div class="paper-tools" aria-label="Paper filters">
+          <label class="search-field">
+            <span>Search</span>
+            <input data-paper-search type="search" placeholder="Title, author, method, or topic" autocomplete="off">
+          </label>
+
+          <div class="segmented" role="group" aria-label="Filter papers by topic" data-paper-filters></div>
+        </div>
+
+        <div class="paper-list" data-paper-list></div>
+        <p class="empty-state" data-empty-state hidden>No matching paper found.</p>
+      </section>
+
+      <section class="section education-section" id="education">
+        <div class="section-heading">
+          <p class="eyebrow">Academic Background</p>
+          <h2>Education</h2>
+          <p data-education-intro>
+            My training spans Hong Kong, mainland China, Macau, and New York-facing academic exchange environments,
+            with a growing focus on algorithmic decision-making and financial technology.
+          </p>
+        </div>
+
+        <div class="timeline-grid" data-education-grid></div>
+      </section>
+
+      <section class="section files-section" id="files">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">Files and Links</p>
+            <h2>Public Materials</h2>
+          </div>
+          <p data-files-intro>
+            Add CVs, preprints, slides, datasets, or external links from the admin page.
+          </p>
+        </div>
+
+        <div class="file-grid" data-file-grid></div>
+        <p class="empty-state" data-file-empty>No public files yet.</p>
+      </section>
+
+      <section class="contact-band" id="contact">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2 data-contact-title>Research collaboration and paper inquiries</h2>
+          <p data-contact-text>
+            I welcome conversations on recommender-system fairness, fintech strategy, market disclosure,
+            and related empirical research.
+          </p>
+        </div>
+        <div class="contact-actions">
+          <a class="button primary" data-contact-email href="mailto:libinghong84@gmail.com">libinghong84@gmail.com</a>
+          <a class="button secondary" href="#papers">Papers</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p data-footer-copy>(c) 2026 Binghong Li</p>
+      <p>Last updated: <span data-last-updated>2026-05-22</span></p>
+    </footer>
+
+    <script src="content/site-content.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

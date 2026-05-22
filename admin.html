@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin | Binghong Li Academic Website</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="admin-body">
+    <main class="admin-shell">
+      <section class="admin-login" data-login-panel>
+        <div class="admin-login-card">
+          <p class="eyebrow">Website Admin</p>
+          <h1>Manage Binghong Li Academic Website</h1>
+          <p>
+            Enter the admin password to edit website text, papers, education items, and public files.
+          </p>
+          <label class="admin-field">
+            <span>Password</span>
+            <input data-password type="password" autocomplete="current-password" placeholder="Enter password">
+          </label>
+          <button class="button primary" type="button" data-login>Unlock Admin</button>
+          <p class="admin-error" data-login-error hidden>Wrong password.</p>
+        </div>
+      </section>
+
+      <section class="admin-app" data-admin-app hidden>
+        <header class="admin-header">
+          <div>
+            <p class="eyebrow">Website Admin</p>
+            <h1>Content Manager</h1>
+            <p>
+              Save changes for local preview, then export `site-content.js` for public deployment.
+            </p>
+          </div>
+          <div class="admin-header-actions">
+            <a class="button secondary admin-dark-button" href="index.html" target="_blank" rel="noopener noreferrer">Open Site</a>
+            <button class="button secondary admin-dark-button" type="button" data-reset>Reset</button>
+            <button class="button primary" type="button" data-save>Save Preview</button>
+          </div>
+        </header>
+
+        <nav class="admin-tabs" aria-label="Admin sections">
+          <button class="is-active" type="button" data-admin-tab="profile">Profile</button>
+          <button type="button" data-admin-tab="papers">Papers</button>
+          <button type="button" data-admin-tab="education">Education</button>
+          <button type="button" data-admin-tab="files">Files</button>
+          <button type="button" data-admin-tab="publish">Publish</button>
+        </nav>
+
+        <div class="admin-status" data-status>Ready.</div>
+
+        <section class="admin-panel" data-admin-panel="profile">
+          <div class="admin-grid">
+            <article class="admin-card">
+              <h2>Basic Profile</h2>
+              <div class="admin-form" data-profile-form></div>
+            </article>
+            <article class="admin-card">
+              <h2>Facts and Metrics</h2>
+              <div data-list="facts"></div>
+              <div data-list="metrics"></div>
+            </article>
+            <article class="admin-card">
+              <h2>Research Interests</h2>
+              <label class="admin-field">
+                <span>Research intro</span>
+                <textarea data-path="researchIntro" rows="4"></textarea>
+              </label>
+              <div data-list="research"></div>
+            </article>
+            <article class="admin-card">
+              <h2>Contact</h2>
+              <div class="admin-form" data-contact-form></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="admin-panel" data-admin-panel="papers" hidden>
+          <article class="admin-card">
+            <h2>Papers</h2>
+            <label class="admin-field">
+              <span>Papers intro</span>
+              <textarea data-path="papersIntro" rows="3"></textarea>
+            </label>
+            <div data-list="papers"></div>
+          </article>
+        </section>
+
+        <section class="admin-panel" data-admin-panel="education" hidden>
+          <article class="admin-card">
+            <h2>Education</h2>
+            <label class="admin-field">
+              <span>Education intro</span>
+              <textarea data-path="educationIntro" rows="3"></textarea>
+            </label>
+            <div data-list="education"></div>
+          </article>
+        </section>
+
+        <section class="admin-panel" data-admin-panel="files" hidden>
+          <article class="admin-card">
+            <h2>Public Files and Links</h2>
+            <p class="admin-help">
+              For static hosting, uploads are stored in the exported content file as data URLs.
+              Use external links for large PDFs or datasets.
+            </p>
+            <label class="admin-field">
+              <span>Files section intro</span>
+              <textarea data-path="filesIntro" rows="3"></textarea>
+            </label>
+            <div data-list="files"></div>
+          </article>
+        </section>
+
+        <section class="admin-panel" data-admin-panel="publish" hidden>
+          <article class="admin-card publish-card">
+            <h2>Publish</h2>
+            <p>
+              `Save Preview` changes the site in this browser. To make changes public for everyone,
+              export `site-content.js`, replace `academic-site/content/site-content.js`, and redeploy.
+            </p>
+            <div class="publish-actions">
+              <button class="button primary" type="button" data-export-js>Export site-content.js</button>
+              <button class="button secondary admin-dark-button" type="button" data-export-json>Export JSON</button>
+              <label class="button secondary admin-dark-button import-button">
+                Import JSON
+                <input data-import-json type="file" accept="application/json">
+              </label>
+            </div>
+            <textarea data-json-preview rows="18" spellcheck="false"></textarea>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <script src="content/site-content.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>
