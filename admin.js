@@ -122,14 +122,6 @@ const listSchemas = {
       ["value", "Value"],
     ],
   },
-  metrics: {
-    title: "Metrics",
-    empty: { value: "1", label: "New metric" },
-    fields: [
-      ["value", "Value"],
-      ["label", "Label"],
-    ],
-  },
   research: {
     title: "Research Cards",
     empty: { title: "New research interest", description: "Description" },

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
     <title>Admin | Binghong Li Academic Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=research-education-v3">
   </head>
   <body class="admin-body">
     <main class="admin-shell">
@@ -45,7 +45,7 @@
           <button class="is-active" type="button" data-admin-tab="profile">Profile</button>
           <button type="button" data-admin-tab="papers">Papers</button>
           <button type="button" data-admin-tab="education">Education</button>
-          <button type="button" data-admin-tab="files">Files</button>
+          <button type="button" data-admin-tab="files">Writing & Links</button>
           <button type="button" data-admin-tab="publish">Publish</button>
         </nav>
 
@@ -58,9 +58,8 @@
               <div class="admin-form" data-profile-form></div>
             </article>
             <article class="admin-card">
-              <h2>Facts and Metrics</h2>
+              <h2>Profile Facts</h2>
               <div data-list="facts"></div>
-              <div data-list="metrics"></div>
             </article>
             <article class="admin-card">
               <h2>Research Interests</h2>
@@ -101,13 +100,13 @@
 
         <section class="admin-panel" data-admin-panel="files" hidden>
           <article class="admin-card">
-            <h2>Public Files and Links</h2>
+            <h2>Commentary, Files and Links</h2>
             <p class="admin-help">
               For static hosting, uploads are stored in the exported content file as data URLs.
               Use external links for large PDFs or datasets.
             </p>
             <label class="admin-field">
-              <span>Files section intro</span>
+              <span>Writing section intro</span>
               <textarea data-path="filesIntro" rows="3"></textarea>
             </label>
             <div data-list="files"></div>
@@ -135,7 +134,7 @@
       </section>
     </main>
 
-    <script src="content/site-content.js"></script>
+    <script src="content/site-content.js?v=research-education-v3"></script>
     <script src="admin.js"></script>
   </body>
 </html>

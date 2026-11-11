@@ -91,18 +91,6 @@ function renderProfile(content) {
   }
 }
 
-function renderMetrics(content) {
-  const container = document.querySelector("[data-metrics]");
-  if (!container) return;
-  container.innerHTML = "";
-  (content.metrics || []).forEach((metric) => {
-    const item = createElement("div", "metric");
-    item.append(createElement("strong", "", metric.value || ""));
-    item.append(createElement("span", "", metric.label || ""));
-    container.append(item);
-  });
-}
-
 function renderResearch(content) {
   setText("[data-research-intro]", content.researchIntro || "");
   const container = document.querySelector("[data-research-grid]");
@@ -155,22 +143,39 @@ function renderMoments(content) {
   momentTimer = window.setInterval(() => showMoment(momentIndex + 1), 5500);
 }
 
+const PAPER_CATEGORIES = [
+  ["published", "Published"],
+  ["forthcoming", "Forthcoming"],
+  ["review", "Under Review"],
+  ["working", "Working Papers"],
+];
+
+function paperCategory(paper) {
+  const status = paper.status || "";
+  if (/\bpublished\b/i.test(status)) return "published";
+  if (/\bforthcoming\b/i.test(status)) return "forthcoming";
+  if (/review|revision/i.test(status)) return "review";
+  return "working";
+}
+
 function renderPaperFilters(content) {
   const container = document.querySelector("[data-paper-filters]");
   if (!container) return;
   container.innerHTML = "";
 
-  const topics = new Map([["all", "All"]]);
-  (content.papers || []).forEach((paper) => {
-    const topic = paper.topic || "other";
-    if (!topics.has(topic)) topics.set(topic, paper.topicLabel || topic);
-  });
-
-  topics.forEach((label, topic) => {
-    const button = createElement("button", topic === "all" ? "is-active" : "", label);
+  const papers = content.papers || [];
+  const categories = [["all", "All Papers"], ...PAPER_CATEGORIES];
+  categories.forEach(([key, label]) => {
+    const count = key === "all" ? papers.length : papers.filter((paper) => paperCategory(paper) === key).length;
+    if (key !== "all" && count === 0) return;
+    const button = createElement("button", key === "all" ? "is-active" : "", label);
+    const counter = createElement("span", "filter-count", String(count));
+    counter.setAttribute("aria-hidden", "true");
+    button.append(counter);
     button.type = "button";
-    button.dataset.filter = topic;
-    button.setAttribute("aria-pressed", String(topic === "all"));
+    button.dataset.filter = key;
+    button.setAttribute("aria-pressed", String(key === "all"));
+    button.setAttribute("aria-label", `${label}, ${count} ${count === 1 ? "paper" : "papers"}`);
     container.append(button);
   });
 
@@ -185,21 +190,40 @@ function renderPapers(content) {
   if (!container) return;
   container.innerHTML = "";
 
+  const groups = new Map();
+  PAPER_CATEGORIES.forEach(([key, label]) => {
+    if (!(content.papers || []).some((paper) => paperCategory(paper) === key)) return;
+    const group = createElement("section", "paper-group");
+    group.dataset.category = key;
+    const heading = createElement("div", "paper-group-heading");
+    const title = createElement("h3", "", label);
+    title.id = `papers-${key}`;
+    group.setAttribute("aria-labelledby", title.id);
+    const count = createElement("span", "paper-group-count");
+    count.dataset.groupCount = "";
+    heading.append(title, count);
+    const list = createElement("div", "paper-group-list");
+    group.append(heading, list);
+    container.append(group);
+    groups.set(key, list);
+  });
+
   (content.papers || []).forEach((paper) => {
     const card = createElement("article", "paper-card");
-    card.dataset.topic = paper.topic || "other";
+    card.dataset.category = paperCategory(paper);
     card.dataset.keywords = [
       paper.title,
       paper.meta,
       paper.overview,
       paper.doi,
+      paper.topicLabel,
       ...(paper.tags || []),
     ].join(" ");
 
     if (paper.year) card.append(createElement("div", "paper-year", paper.year));
     const body = createElement("div", "paper-body");
     body.append(createElement("p", "paper-status", paper.status || ""));
-    body.append(createElement("h3", "", paper.title || ""));
+    body.append(createElement("h4", "paper-title", paper.title || ""));
     body.append(createElement("p", "paper-meta", paper.meta || ""));
     body.append(createElement("p", "", paper.overview || ""));
 
@@ -221,7 +245,7 @@ function renderPapers(content) {
     body.append(actions);
 
     card.append(body);
-    container.append(card);
+    groups.get(card.dataset.category).append(card);
   });
 
   paperCards = Array.from(document.querySelectorAll(".paper-card"));
@@ -234,11 +258,31 @@ function renderEducation(content) {
   const container = document.querySelector("[data-education-grid]");
   if (!container) return;
   container.innerHTML = "";
-  (content.education || []).forEach((item) => {
-    const card = createElement("article", "timeline-item");
-    card.append(createElement("span", "", item.label || ""));
-    card.append(createElement("h3", "", item.title || ""));
-    if (item.description) card.append(createElement("p", "", item.description));
+  (content.education || []).forEach((item, index) => {
+    const card = createElement("li", "timeline-item");
+    const entry = createElement("details", "education-entry");
+    entry.name = "education";
+    entry.open = index === 0;
+    const summary = createElement("summary");
+    const heading = createElement("h3", "education-summary");
+    heading.append(createElement("span", "education-label", item.label || ""));
+    heading.append(createElement("span", "education-title", item.title || ""));
+    const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    icon.classList.add("education-chevron");
+    icon.setAttribute("viewBox", "0 0 24 24");
+    icon.setAttribute("fill", "none");
+    icon.setAttribute("stroke", "currentColor");
+    icon.setAttribute("stroke-width", "1.8");
+    icon.setAttribute("stroke-linecap", "round");
+    icon.setAttribute("stroke-linejoin", "round");
+    icon.setAttribute("aria-hidden", "true");
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", "m6 9 6 6 6-6");
+    icon.append(path);
+    summary.append(heading, icon);
+    entry.append(summary);
+    if (item.description) entry.append(createElement("p", "education-description", item.description));
+    card.append(entry);
     container.append(card);
   });
 }
@@ -254,8 +298,9 @@ function renderFiles(content) {
   files.forEach((file) => {
     const card = createElement("article", "file-card");
     const type = createElement("p", "project-type", file.type || "File");
-    const title = createElement("h3", "", file.title || "Untitled file");
-    const description = createElement("p", "", file.description || "");
+    const title = createElement("h3", "writing-title", file.title || "Untitled file");
+    if (file.language) title.lang = file.language;
+    const description = createElement("p", "writing-summary", file.description || "");
     const link = createElement("a", "button file-link", file.buttonText || "Open");
     link.href = file.url || "#";
     link.target = "_blank";
@@ -274,7 +319,6 @@ function renderSite() {
   const content = getContent();
   if (!content) return;
   renderProfile(content);
-  renderMetrics(content);
   renderResearch(content);
   renderMoments(content);
   renderPapers(content);
@@ -309,19 +353,25 @@ themeToggle?.addEventListener("click", () => {
 });
 
 function filterPapers() {
-  const activeTopic = document.querySelector("[data-filter].is-active")?.dataset.filter ?? "all";
+  const activeCategory = document.querySelector("[data-filter].is-active")?.dataset.filter ?? "all";
   const query = document.querySelector("[data-paper-search]")?.value.trim().toLowerCase() ?? "";
   let visibleCount = 0;
 
   paperCards.forEach((card) => {
-    const topicMatches = activeTopic === "all" || card.dataset.topic === activeTopic;
+    const categoryMatches = activeCategory === "all" || card.dataset.category === activeCategory;
     const searchableText = `${card.textContent} ${card.dataset.keywords}`.toLowerCase();
     const queryMatches = !query || searchableText.includes(query);
-    const isVisible = topicMatches && queryMatches;
+    const isVisible = categoryMatches && queryMatches;
     card.hidden = !isVisible;
     if (isVisible) visibleCount += 1;
   });
 
+  document.querySelectorAll(".paper-group").forEach((group) => {
+    const count = group.querySelectorAll(".paper-card:not([hidden])").length;
+    group.hidden = count === 0;
+    group.querySelector("[data-group-count]").textContent = `${count} ${count === 1 ? "paper" : "papers"}`;
+  });
+  setText("[data-paper-results]", `${visibleCount} ${visibleCount === 1 ? "paper" : "papers"}`);
   if (emptyState) emptyState.hidden = visibleCount > 0;
 }
 
