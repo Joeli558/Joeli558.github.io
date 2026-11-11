@@ -1,5 +1,5 @@
 window.SITE_CONTENT = {
-  "version": "2026-05-22-ui-v2",
+  "version": "2026-11-11-publications",
   "profile": {
     "name": "Binghong Li",
     "brandMark": "BL",
@@ -10,7 +10,7 @@ window.SITE_CONTENT = {
     "cardSummary": "Graduate study at The Hong Kong University of Science and Technology.",
     "photo": "assets/binghong-li.jpg",
     "email": "libinghong84@gmail.com",
-    "lastUpdated": "2026-05-22",
+    "lastUpdated": "2026-11-11",
     "footer": "(c) 2026 Binghong Li"
   },
   "facts": [
@@ -20,21 +20,21 @@ window.SITE_CONTENT = {
     },
     {
       "label": "Undergraduate",
-      "value": "Beijing Institute of Technology, Zhuhai"
+      "value": "Bachelor’s degree in economics"
     },
     {
       "label": "Exchange",
-      "value": "NYU Shanghai | University of Macau"
+      "value": "New York University (NYU)"
     }
   ],
   "metrics": [
     {
-      "value": "7",
+      "value": "8",
       "label": "papers and working papers"
     },
     {
       "value": "2026",
-      "label": "BDSC conference paper forthcoming"
+      "label": "BDSC conference paper published"
     },
     {
       "value": "2025",
@@ -80,18 +80,46 @@ window.SITE_CONTENT = {
   "papersIntro": "A compact research portfolio covering recommender-system fairness, fintech strategy, and algorithmic disclosure behavior in financial markets.",
   "papers": [
     {
+      "id": "algorithmic-window-dressing",
+      "year": "2026",
+      "topic": "markets",
+      "topicLabel": "Markets",
+      "status": "Journal Article | Published",
+      "title": "Algorithmic window dressing? Section-level machine readability around Russell reconstitution",
+      "meta": "Binghong Li, Arthur Walter Chen, Runzhi Guo, Shuya Lou | Finance Research Letters 108 (2026), 110485",
+      "doi": "10.1016/j.frl.2026.110485",
+      "overview": "This study measures the gap in machine readability between MD&A and Risk Factors disclosures around the Russell 1000/2000 reconstitution and uses EDGAR logs to examine automated access.",
+      "tags": [
+        "Machine-readable disclosure",
+        "Russell reconstitution"
+      ]
+    },
+    {
       "id": "popularity-bias-recommenders",
       "year": "2026",
       "topic": "recsys",
       "topicLabel": "Recommenders",
-      "status": "Conference Paper | Pending Publication",
-      "title": "Detection and Mitigation of Popularity Bias in E-commerce Recommender Systems",
-      "meta": "Binghong Li, Yiheng Huang, Qian Tang | The 11th CAAI China National Conference on Big Data & Social Computing (BDSC 2026)",
-      "overview": "This work addresses popularity bias in e-commerce recommendation systems. It develops bias detection and mitigation methods designed to improve algorithmic fairness, increase exposure for long-tail products, and provide feasible optimization solutions for intelligent e-commerce platforms.",
+      "status": "Conference Paper | Published",
+      "title": "Detection and Mitigation of Popularity Bias in E-Commerce Recommender Systems",
+      "meta": "Binghong Li, Yiheng Huang, Qian Tang | Big Data and Social Computing (BDSC 2026), Springer, CCIS 3086, pp. 221–233",
+      "doi": "10.1007/978-981-92-3734-0_16",
+      "overview": "This study combines bias diagnostics, training constraints, and re-ranking to reduce popularity bias and broaden product exposure in e-commerce recommender systems.",
       "tags": [
-        "Forthcoming",
-        "SSRN Preprint",
-        "FRL Coming Soon"
+        "Popularity bias",
+        "Recommender systems"
+      ]
+    },
+    {
+      "id": "from-message-to-portfolio",
+      "topic": "markets",
+      "topicLabel": "Markets",
+      "status": "Journal Article | Forthcoming",
+      "title": "From Message to Portfolio: Broker Attention, Trading, and Position Persistence",
+      "meta": "Binghong Li, Xiaoting Huang, Runzhi Guo | Borsa Istanbul Review",
+      "overview": "This study examines how broker attention relates to trading and the persistence of portfolio positions.",
+      "tags": [
+        "Broker attention",
+        "Portfolio holdings"
       ]
     },
     {
@@ -101,27 +129,12 @@ window.SITE_CONTENT = {
       "topicLabel": "FinTech",
       "status": "CNKI Journal Paper | Published",
       "title": "Development Analysis of MYBank Based on SWOT Model",
-      "meta": "Binghong Li, Yiheng Huang, Xiaoyi Xu | Beijing Institute of Technology, Zhuhai | CNKI Online Publication, September 2025",
+      "meta": "Binghong Li, Yiheng Huang, Xiaoyi Xu | CNKI Online Publication, September 2025",
       "overview": "Grounded in modern financial intermediary theory, this study applies the SWOT framework to analyze MYBank's strengths, weaknesses, opportunities, and threats in digital inclusive finance. It summarizes fintech-driven operational innovation and proposes strategic optimization suggestions for sustainable internet banking development.",
       "tags": [
         "DOI: 10.14097/j.cnki.5392/2025.15.037",
         "Digital inclusive finance",
         "SWOT"
-      ]
-    },
-    {
-      "id": "algorithmic-window-dressing",
-      "year": "2026",
-      "topic": "markets",
-      "topicLabel": "Markets",
-      "status": "Working Paper | Forthcoming",
-      "title": "Algorithmic Window Dressing: Disclosure Structure and Information-Horizon Arbitrage",
-      "meta": "Binghong Li (HKUST), Arthur Walter Chen (Monash University), Shuya Lou (Shihezi University) | 12 pages | Posted 29 Apr 2026",
-      "overview": "This working paper studies algorithmic window dressing in financial markets, focusing on strategic disclosure structure and information-horizon arbitrage. It analyzes how algorithmic strategies may exploit disclosure timing and information asymmetry, offering insights for financial algorithm governance and market transparency regulation.",
-      "tags": [
-        "FRL Coming Soon",
-        "Disclosure structure",
-        "Market transparency"
       ]
     },
     {
@@ -185,7 +198,7 @@ window.SITE_CONTENT = {
       ]
     }
   ],
-  "educationIntro": "My training spans Hong Kong, mainland China, Macau, and New York-facing academic exchange environments, with a growing focus on algorithmic decision-making and financial technology.",
+  "educationIntro": "My academic training spans economics, finance, and quantitative research methods.",
   "education": [
     {
       "label": "Graduate Study",
@@ -194,13 +207,12 @@ window.SITE_CONTENT = {
     },
     {
       "label": "Undergraduate Study",
-      "title": "Beijing Institute of Technology, Zhuhai",
-      "description": "Undergraduate academic foundation in business, finance, and data-driven research methods."
+      "title": "Bachelor’s degree in economics"
     },
     {
       "label": "Exchange Study",
-      "title": "NYU Shanghai | University of Macau",
-      "description": "Exchange experience that broadened the international perspective of digital business, finance, and applied research."
+      "title": "New York University (NYU)",
+      "description": "Exchange coursework in Foundations of Finance."
     }
   ],
   "filesIntro": "Add CVs, preprints, slides, datasets, or external links from the admin page.",
