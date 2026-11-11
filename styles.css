@@ -490,7 +490,7 @@ h3 {
 
 .focus-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -593,7 +593,63 @@ h3 {
 
 .paper-list {
   display: grid;
+  gap: 38px;
+}
+
+.paper-group-list {
+  display: grid;
   gap: 14px;
+}
+
+.paper-group[hidden] {
+  display: none;
+}
+
+.paper-group-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+}
+
+.paper-group-heading h3 {
+  font-size: 1.25rem;
+}
+
+.paper-group-count,
+.paper-results {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.paper-results {
+  margin: 14px 0 24px;
+}
+
+.paper-title {
+  margin: 0;
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.segmented button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.segmented button.is-active {
+  color: var(--surface);
+}
+
+.filter-count {
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 
 .paper-card {
@@ -757,7 +813,7 @@ h3 {
 
 .file-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 
@@ -766,10 +822,41 @@ h3 {
 }
 
 .file-card {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-  padding: 22px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "meta link" "title link" "description link";
+  gap: 12px 32px;
+  border-block: 1px solid var(--line);
+  padding: 28px 0;
+}
+
+.file-card .project-type {
+  grid-area: meta;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.writing-title {
+  grid-area: title;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.55;
+}
+
+.writing-summary {
+  grid-area: description;
+  max-width: 76ch;
+  margin: 0;
+}
+
+.file-card .file-link {
+  grid-area: link;
+  align-self: center;
+  justify-self: start;
+  margin: 0;
 }
 
 .project-card img {
@@ -813,68 +900,120 @@ h3 {
 }
 
 .education-section {
-  position: relative;
   width: min(1060px, calc(100% - 40px));
-  isolation: isolate;
 }
 
-.education-section::before {
+.education-timeline {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.education-timeline::before {
   position: absolute;
-  top: 48px;
-  left: 50%;
-  width: 100vw;
-  height: calc(100% - 20px);
-  min-height: 420px;
-  z-index: -2;
-  transform: translateX(-50%);
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--bg) 60%, transparent), var(--bg) 98%),
-    linear-gradient(90deg, rgba(14, 118, 111, 0.08), rgba(182, 75, 61, 0.06)),
-    url("assets/background-classroom.jpg") center 52% / cover no-repeat;
+  inset: 32px auto 32px 8px;
+  width: 1px;
+  background: var(--line);
   content: "";
-}
-
-.education-section::after {
-  position: absolute;
-  top: 48px;
-  left: 50%;
-  width: 100vw;
-  height: calc(100% - 20px);
-  min-height: 420px;
-  z-index: -1;
-  transform: translateX(-50%);
-  background: color-mix(in srgb, var(--bg) 24%, transparent);
-  content: "";
-}
-
-.timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
 }
 
 .timeline-item {
+  position: relative;
+  padding-left: 38px;
+}
+
+.timeline-item + .timeline-item {
+  margin-top: 16px;
+}
+
+.timeline-item::before {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 17px;
+  height: 17px;
+  border: 4px solid var(--bg);
+  border-radius: 50%;
+  background: var(--muted);
+  content: "";
+}
+
+.timeline-item:has(.education-entry[open])::before {
+  background: var(--teal);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 16%, transparent);
+}
+
+.education-entry {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
-  padding: 24px;
+  transition: border-color 0.2s ease;
 }
 
-.timeline-item span {
-  color: var(--coral);
-  font-size: 0.78rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
+.education-entry[open],
+.education-entry:hover {
+  border-color: color-mix(in srgb, var(--teal) 60%, var(--line));
+}
+
+.education-entry summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 28px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.education-entry summary::-webkit-details-marker {
+  display: none;
+}
+
+.education-entry summary:focus-visible {
+  border-radius: 6px;
+  outline: 3px solid var(--teal);
+  outline-offset: 4px;
+}
+
+.education-summary {
+  margin: 0;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  line-height: 1.4;
+}
+
+.education-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--teal);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.timeline-item h3 {
-  margin-top: 18px;
+.education-title {
+  display: block;
 }
 
-.timeline-item p {
-  margin-bottom: 0;
+.education-description {
+  max-width: 80ch;
+  margin: 0;
+  padding: 0 28px 24px;
   color: var(--muted);
+}
+
+.education-chevron {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+}
+
+.education-entry[open] .education-chevron {
+  color: var(--teal);
+  transform: rotate(180deg);
 }
 
 .tab-shell {
@@ -1240,8 +1379,6 @@ h3 {
 
   .focus-grid,
   .project-grid,
-  .file-grid,
-  .timeline-grid,
   .moment-viewer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1362,7 +1499,6 @@ h3 {
   .focus-grid,
   .project-grid,
   .file-grid,
-  .timeline-grid,
   .moment-viewer,
   .detail-layout,
   .paper-card,
@@ -1408,7 +1544,34 @@ h3 {
 
   .segmented {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .segmented button {
+    min-width: 0;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 6px;
+    font-size: 0.8rem;
+  }
+
+  .file-card {
+    grid-template-columns: 1fr;
+    grid-template-areas: "meta" "title" "description" "link";
+    gap: 14px;
+  }
+
+  .timeline-item {
+    padding-left: 28px;
+  }
+
+  .education-entry summary {
+    gap: 12px;
+    padding: 20px 18px;
+  }
+
+  .education-description {
+    padding: 0 18px 20px;
   }
 
   .detail-side {
@@ -1445,7 +1608,6 @@ h3 {
 
 @media (max-width: 460px) {
   .metric-band,
-  .segmented,
   .tabs,
   .admin-tabs {
     grid-template-columns: 1fr;
