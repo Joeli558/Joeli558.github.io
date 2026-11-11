@@ -192,10 +192,11 @@ function renderPapers(content) {
       paper.title,
       paper.meta,
       paper.overview,
+      paper.doi,
       ...(paper.tags || []),
     ].join(" ");
 
-    card.append(createElement("div", "paper-year", paper.year || ""));
+    if (paper.year) card.append(createElement("div", "paper-year", paper.year));
     const body = createElement("div", "paper-body");
     body.append(createElement("p", "paper-status", paper.status || ""));
     body.append(createElement("h3", "", paper.title || ""));
@@ -210,6 +211,13 @@ function renderPapers(content) {
     const detailLink = createElement("a", "button paper-detail-link", "Details");
     detailLink.href = `paper.html?id=${encodeURIComponent(paper.id || paper.title || "")}`;
     actions.append(detailLink);
+    const doi = paper.doi?.trim();
+    if (doi) {
+      const doiLink = createElement("a", "button paper-detail-link", "DOI");
+      doiLink.href = `https://doi.org/${doi}`;
+      doiLink.setAttribute("aria-label", `DOI for ${paper.title}`);
+      actions.append(doiLink);
+    }
     body.append(actions);
 
     card.append(body);
@@ -230,7 +238,7 @@ function renderEducation(content) {
     const card = createElement("article", "timeline-item");
     card.append(createElement("span", "", item.label || ""));
     card.append(createElement("h3", "", item.title || ""));
-    card.append(createElement("p", "", item.description || ""));
+    if (item.description) card.append(createElement("p", "", item.description));
     container.append(card);
   });
 }

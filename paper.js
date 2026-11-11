@@ -29,5 +29,13 @@ if (paper) {
   const mail = document.querySelector("[data-detail-mail]");
   if (mail) {
     mail.href = `mailto:${email}?subject=${encodeURIComponent(paper.title)}`;
+    const doi = paper.doi?.trim();
+    if (doi) {
+      const doiLink = document.createElement("a");
+      doiLink.className = "button secondary admin-dark-button detail-doi";
+      doiLink.href = `https://doi.org/${doi}`;
+      doiLink.textContent = `DOI ${doi}`;
+      mail.before(doiLink);
+    }
   }
 }
