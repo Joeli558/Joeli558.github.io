@@ -1,5 +1,5 @@
 window.SITE_CONTENT = {
-  "version": "2026-11-11-research-education-v3",
+  "version": "2026-11-14-interactive-v4",
   "profile": {
     "name": "Binghong Li",
     "brandMark": "BL",
@@ -10,7 +10,7 @@ window.SITE_CONTENT = {
     "cardSummary": "Graduate study at The Hong Kong University of Science and Technology.",
     "photo": "assets/binghong-li.jpg",
     "email": "libinghong84@gmail.com",
-    "lastUpdated": "2026-11-11",
+    "lastUpdated": "2026-11-14",
     "footer": "(c) 2026 Binghong Li"
   },
   "facts": [
@@ -44,15 +44,24 @@ window.SITE_CONTENT = {
   "research": [
     {
       "title": "Quantitative Marketing",
-      "description": "Consumer behavior, digital platforms, and recommender systems. I study how algorithms shape attention, product discovery, and choice."
+      "description": "Consumer behavior, digital platforms, and recommender systems. I study how algorithms shape attention, product discovery, and choice.",
+      "focus": "Choice",
+      "search": "recommender",
+      "shortTitle": "Quantitative Marketing"
     },
     {
       "title": "Natural Language Processing",
-      "description": "Text as data for business and economic research, with a focus on financial disclosure, communication, and machine-readable information."
+      "description": "Text as data for business and economic research, with a focus on financial disclosure, communication, and machine-readable information.",
+      "focus": "Text",
+      "search": "machine",
+      "shortTitle": "NLP"
     },
     {
       "title": "Econometrics",
-      "description": "Empirical methods for studying behavior and market outcomes, connecting research questions to transparent and rigorous data analysis."
+      "description": "Empirical methods for studying behavior and market outcomes, connecting research questions to transparent and rigorous data analysis.",
+      "focus": "Evidence",
+      "search": "",
+      "shortTitle": "Econometrics"
     }
   ],
   "papersIntro": "Published and forthcoming work on recommender systems, financial disclosure, and investor attention.",
