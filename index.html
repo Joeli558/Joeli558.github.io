@@ -18,9 +18,11 @@
     <meta property="og:url" content="https://joeli558.github.io/">
     <link rel="canonical" href="https://joeli558.github.io/">
     <title>Binghong Li | Academic Website</title>
-    <link rel="stylesheet" href="styles.css?v=research-education-v3">
+    <link rel="stylesheet" href="styles.css?v=interactive-v4">
+    <link rel="stylesheet" href="experience.css?v=interactive-v4">
   </head>
-  <body>
+  <body class="experience">
+    <div class="ambient-canvas" aria-hidden="true"></div>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header" data-header>
@@ -52,6 +54,7 @@
           </button>
         </div>
       </nav>
+      <div class="reading-progress" aria-hidden="true"></div>
     </header>
 
     <main id="main">
@@ -82,17 +85,16 @@
         </div>
       </section>
 
-      <section class="section" id="research">
+      <section class="section research-section" id="research">
         <div class="section-heading">
-          <p class="eyebrow">Research Agenda</p>
-          <h2>Research Interests</h2>
+          <h2>Research <span class="gradient-text">Interests</span></h2>
           <p data-research-intro>
             I bring together quantitative marketing, natural language processing, and econometrics to study
             how information and algorithms shape decisions in digital and financial markets.
           </p>
         </div>
 
-        <div class="focus-grid" data-research-grid></div>
+        <div class="research-explorer" data-research-explorer></div>
       </section>
 
       <section class="section moments-section" id="moments">
@@ -146,8 +148,7 @@
 
       <section class="section education-section" id="education">
         <div class="section-heading">
-          <p class="eyebrow">Academic Background</p>
-          <h2>Education</h2>
+          <h2 class="gradient-text">Education</h2>
           <p data-education-intro>
             An academic foundation in economics and finance, informing my research in quantitative marketing,
             natural language processing, and econometrics.
@@ -191,10 +192,11 @@
 
     <footer class="site-footer">
       <p data-footer-copy>(c) 2026 Binghong Li</p>
-      <p>Last updated: <span data-last-updated>2026-11-11</span></p>
+      <p>Last updated: <span data-last-updated>2026-11-14</span></p>
     </footer>
 
-    <script src="content/site-content.js?v=research-education-v3"></script>
-    <script src="script.js?v=research-education-v3"></script>
+    <script src="content/site-content.js?v=interactive-v4"></script>
+    <script src="script.js?v=interactive-v4"></script>
+    <script src="experience.js?v=interactive-v4"></script>
   </body>
 </html>

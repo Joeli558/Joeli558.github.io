@@ -123,11 +123,14 @@ const listSchemas = {
     ],
   },
   research: {
-    title: "Research Cards",
-    empty: { title: "New research interest", description: "Description" },
+    title: "Research Interests",
+    empty: { title: "New research interest", description: "Description", focus: "Research", search: "" },
     fields: [
       ["title", "Title"],
       ["description", "Description", 3],
+      ["shortTitle", "Short button label (optional)"],
+      ["focus", "Visual focus word"],
+      ["search", "Related publications keyword"],
     ],
   },
   papers: {

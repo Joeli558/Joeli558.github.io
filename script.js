@@ -16,8 +16,8 @@ let momentTimer;
 const savedTheme = localStorage.getItem("academic-site-theme");
 if (savedTheme) {
   root.dataset.theme = savedTheme;
-  themeIcon.textContent = savedTheme === "dark" ? "L" : "T";
 }
+updateThemeControls(savedTheme === "dark" ? "dark" : "light");
 
 function getContent() {
   const saved = localStorage.getItem(STORAGE_KEY);
@@ -52,6 +52,40 @@ function createElement(tag, className, text) {
   if (className) element.className = className;
   if (text !== undefined) element.textContent = text;
   return element;
+}
+
+function createSvgIcon(pathData, className = "") {
+  const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  icon.setAttribute("viewBox", "0 0 24 24");
+  icon.setAttribute("fill", "none");
+  icon.setAttribute("stroke", "currentColor");
+  icon.setAttribute("stroke-width", "1.8");
+  icon.setAttribute("stroke-linecap", "round");
+  icon.setAttribute("stroke-linejoin", "round");
+  icon.setAttribute("aria-hidden", "true");
+  if (className) icon.classList.add(className);
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", pathData);
+  icon.append(path);
+  return icon;
+}
+
+function updateThemeControls(theme) {
+  const isDark = theme === "dark";
+  const path = isDark
+    ? "M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4"
+    : "M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z";
+  themeIcon?.replaceChildren(createSvgIcon(path));
+  themeToggle?.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+  themeToggle?.setAttribute("aria-pressed", String(isDark));
+}
+
+function createResearchLink(label, href, className) {
+  const link = createElement("a", className);
+  link.href = href;
+  link.append(createElement("span", "", label));
+  link.append(createSvgIcon("M5 12h14m-6-6 6 6-6 6", "link-arrow"));
+  return link;
 }
 
 function renderProfile(content) {
@@ -93,16 +127,48 @@ function renderProfile(content) {
 
 function renderResearch(content) {
   setText("[data-research-intro]", content.researchIntro || "");
-  const container = document.querySelector("[data-research-grid]");
+  const container = document.querySelector("[data-research-explorer]");
   if (!container) return;
   container.innerHTML = "";
+  const tabs = createElement("div", "research-tabs");
+  tabs.setAttribute("role", "tablist");
+  tabs.setAttribute("aria-label", "Research interests");
+  const panels = createElement("div", "research-panels");
+  panels.dataset.activeLens = "0";
   (content.research || []).forEach((item, index) => {
-    const card = createElement("article", "focus-card");
-    card.append(createElement("span", "focus-index", String(index + 1).padStart(2, "0")));
-    card.append(createElement("h3", "", item.title || ""));
-    card.append(createElement("p", "", item.description || ""));
-    container.append(card);
+    const tab = createElement("button", "research-tab");
+    tab.type = "button";
+    tab.id = `research-tab-${index}`;
+    tab.dataset.researchIndex = String(index);
+    tab.setAttribute("role", "tab");
+    tab.setAttribute("aria-selected", String(index === 0));
+    tab.setAttribute("aria-controls", `research-panel-${index}`);
+    tab.setAttribute("aria-label", item.title || "Research interest");
+    tab.tabIndex = index === 0 ? 0 : -1;
+    tab.append(createElement("span", "research-tab-full", item.title || ""));
+    tab.append(createElement("span", "research-tab-compact", item.shortTitle || item.title || ""));
+    tabs.append(tab);
+
+    const panel = createElement("article", "research-panel");
+    panel.id = `research-panel-${index}`;
+    panel.dataset.lens = String(index);
+    panel.setAttribute("role", "tabpanel");
+    panel.setAttribute("aria-labelledby", tab.id);
+    panel.tabIndex = 0;
+    panel.hidden = index !== 0;
+    const copy = createElement("div", "research-panel-copy");
+    copy.append(createElement("h3", "research-panel-title", item.title || ""));
+    copy.append(createElement("p", "research-panel-description", item.description || ""));
+    const link = createResearchLink("Explore related work", "#papers", "experience-button research-related");
+    link.dataset.search = item.search || "";
+    copy.append(link);
+    const visual = createElement("div", "research-visual");
+    visual.setAttribute("aria-hidden", "true");
+    visual.append(createElement("span", "research-focus-word", item.focus || "Research"));
+    panel.append(copy, visual);
+    panels.append(panel);
   });
+  container.append(tabs, panels);
 }
 
 function renderMoments(content) {
@@ -261,9 +327,10 @@ function renderEducation(content) {
   (content.education || []).forEach((item, index) => {
     const card = createElement("li", "timeline-item");
     const entry = createElement("details", "education-entry");
-    entry.name = "education";
     entry.open = index === 0;
+    entry.dataset.expanded = String(index === 0);
     const summary = createElement("summary");
+    summary.id = `education-summary-${index}`;
     const heading = createElement("h3", "education-summary");
     heading.append(createElement("span", "education-label", item.label || ""));
     heading.append(createElement("span", "education-title", item.title || ""));
@@ -281,7 +348,15 @@ function renderEducation(content) {
     icon.append(path);
     summary.append(heading, icon);
     entry.append(summary);
-    if (item.description) entry.append(createElement("p", "education-description", item.description));
+    const body = createElement("div", "education-body");
+    body.id = `education-body-${index}`;
+    body.setAttribute("aria-labelledby", summary.id);
+    summary.setAttribute("aria-controls", body.id);
+    if (item.description) body.append(createElement("p", "education-description", item.description));
+    if (index === 0) {
+      body.append(createResearchLink("Explore my research", "#research", "experience-button education-research-link"));
+    }
+    entry.append(body);
     card.append(entry);
     container.append(card);
   });
@@ -349,7 +424,7 @@ themeToggle?.addEventListener("click", () => {
   const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
   root.dataset.theme = nextTheme;
   localStorage.setItem("academic-site-theme", nextTheme);
-  themeIcon.textContent = nextTheme === "dark" ? "L" : "T";
+  updateThemeControls(nextTheme);
 });
 
 function filterPapers() {
