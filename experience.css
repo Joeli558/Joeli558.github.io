@@ -429,8 +429,7 @@
 }
 
 .experience .paper-card,
-.experience .moment-viewer,
-.experience .portrait-card {
+.experience .moment-viewer {
   border-radius: 18px;
 }
 

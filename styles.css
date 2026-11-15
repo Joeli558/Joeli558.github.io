@@ -107,7 +107,7 @@ input {
 }
 
 .nav-shell {
-  width: min(1180px, calc(100% - 40px));
+  width: min(1224px, calc(100% - 40px));
   min-height: var(--header-height);
   margin: 0 auto;
   display: flex;
@@ -233,98 +233,98 @@ input {
 
 .hero {
   position: relative;
-  min-height: clamp(560px, 82svh, 760px);
-  display: flex;
-  align-items: center;
   isolation: isolate;
-  background:
-    linear-gradient(90deg, rgba(12, 22, 32, 0.88) 0%, rgba(12, 22, 32, 0.58) 43%, rgba(12, 22, 32, 0.08) 100%),
-    url("assets/background-auditorium.jpg") center 46% / cover no-repeat;
-  color: #fff;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: auto 0 0;
-  height: 26%;
-  z-index: -1;
-  background: linear-gradient(0deg, var(--bg), transparent);
-  opacity: 0.85;
 }
 
 .hero-content {
-  width: min(1180px, calc(100% - 40px));
+  width: min(1224px, calc(100% - 64px));
   margin: 0 auto;
-  padding: 76px 0 54px;
+  padding: 124px 0 44px;
 }
 
 .personal-hero-content {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
-  gap: clamp(28px, 6vw, 72px);
-  align-items: center;
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+  grid-template-areas: "portrait identity" "portrait biography";
+  column-gap: clamp(40px, 5.2vw, 76px);
+  row-gap: 28px;
+  align-content: center;
 }
 
 .hero-text {
+  grid-area: biography;
   min-width: 0;
 }
 
-.portrait-card {
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 8px;
+.profile-portrait {
+  grid-area: portrait;
+  align-self: center;
+  margin: 0;
+  border-radius: 24px;
   overflow: hidden;
-  background: color-mix(in srgb, var(--surface) 94%, transparent);
-  color: var(--ink);
-  box-shadow: var(--shadow);
+  background: var(--surface-strong);
+  box-shadow: 0 12px 30px rgba(24, 33, 43, 0.12);
 }
 
-.portrait-card img {
+.profile-portrait img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: auto;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  object-position: center 23%;
-  border-bottom: 1px solid var(--line);
+  object-position: center 35%;
 }
 
-.portrait-body {
-  padding: 22px;
+.profile-identity {
+  grid-area: identity;
+  align-self: end;
+  min-width: 0;
 }
 
-.portrait-card h2 {
-  font-size: 1.45rem;
+.profile-identity h1 {
+  font-size: clamp(3rem, 5.4vw, 5rem);
+  font-weight: 750;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
 }
 
-.portrait-body p {
-  margin: 10px 0 0;
+.profile-role {
+  margin: 14px 0 0;
+  color: var(--teal);
+  font-size: clamp(1rem, 1.65vw, 1.5rem);
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.profile-biography {
   color: var(--muted);
+  font-size: clamp(1.0625rem, 1.5vw, 1.375rem);
+  line-height: 1.55;
+  letter-spacing: -0.012em;
 }
 
-.profile-facts {
-  display: grid;
-  gap: 12px;
-  list-style: none;
-  margin: 20px 0 0;
-  padding: 0;
+.profile-biography p {
+  margin: 0;
 }
 
-.profile-facts li {
-  display: grid;
-  gap: 3px;
-  border-top: 1px solid var(--line);
-  padding-top: 12px;
+.profile-biography p + p {
+  margin-top: 22px;
 }
 
-.profile-facts span {
-  color: var(--brass);
-  font-size: 0.76rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.hero-actions .button {
+  min-height: 56px;
+  padding-inline: 28px;
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
+  font-weight: 700;
 }
 
-.profile-facts strong {
-  font-size: 0.92rem;
-  line-height: 1.35;
+.hero-actions .button.secondary {
+  border-color: var(--muted);
+  color: var(--ink);
+  background: transparent;
+}
+
+:root[data-theme="dark"] .hero-actions .button.primary {
+  color: var(--bg);
 }
 
 .eyebrow {
@@ -334,10 +334,6 @@ input {
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-}
-
-.hero .eyebrow {
-  color: #8ee4d7;
 }
 
 h1,
@@ -366,13 +362,6 @@ h2 {
 
 h3 {
   font-size: 1.18rem;
-}
-
-.hero-copy {
-  max-width: 700px;
-  margin: 26px 0 0;
-  color: rgba(255, 255, 255, 0.86);
-  font-size: clamp(1rem, 2vw, 1.18rem);
 }
 
 .hero-actions,
@@ -1410,6 +1399,21 @@ h3 {
 }
 
 @media (max-width: 980px) {
+  .hero-content {
+    padding-top: 72px;
+  }
+
+  .personal-hero-content {
+    grid-template-columns: 180px minmax(0, 1fr);
+    grid-template-areas: "portrait identity" "biography biography";
+    column-gap: 32px;
+    row-gap: 32px;
+  }
+
+  .profile-identity {
+    align-self: center;
+  }
+
   .section-heading.split,
   .paper-tools,
   .contact-band {
@@ -1509,14 +1513,8 @@ h3 {
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  .hero {
-    min-height: 78svh;
-    align-items: end;
-    background-position: 54% center;
-  }
-
   .hero-content {
-    padding-top: 92px;
+    padding: 48px 0 12px;
   }
 
   h1 {
@@ -1560,11 +1558,27 @@ h3 {
   }
 
   .personal-hero-content {
-    grid-template-columns: 1fr;
+    grid-template-columns: 112px minmax(0, 1fr);
+    column-gap: 22px;
+    row-gap: 28px;
   }
 
-  .portrait-card {
-    max-width: 360px;
+  .profile-portrait {
+    border-radius: 16px;
+  }
+
+  .profile-identity h1 {
+    font-size: clamp(1.75rem, 8vw, 3rem);
+  }
+
+  .profile-role {
+    margin-top: 10px;
+    font-size: 0.9375rem;
+  }
+
+  .profile-biography {
+    font-size: 1.0625rem;
+    line-height: 1.75;
   }
 
   .focus-card {
@@ -1646,6 +1660,27 @@ h3 {
 }
 
 @media (max-width: 460px) {
+  .hero-content {
+    width: calc(100% - 40px);
+  }
+
+  .personal-hero-content {
+    grid-template-columns: 96px minmax(0, 1fr);
+    column-gap: 18px;
+  }
+
+  .profile-identity h1 {
+    font-size: clamp(1.7rem, 7.7vw, 2rem);
+  }
+
+  .hero-actions {
+    gap: 10px;
+  }
+
+  .hero-actions .button {
+    padding-inline: 18px;
+  }
+
   .metric-band,
   .tabs,
   .admin-tabs {

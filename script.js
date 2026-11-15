@@ -93,11 +93,8 @@ function renderProfile(content) {
   setText("[data-brand-mark]", profile.brandMark || "BL");
   setText("[data-profile-name]", profile.name || "");
   setText("[data-nav-subtitle]", profile.navSubtitle || "");
-  setText("[data-hero-kicker]", profile.heroKicker || "");
+  setText("[data-profile-role]", profile.heroKicker || "");
   setText("[data-hero-title]", profile.heroTitle || profile.name || "");
-  setText("[data-hero-summary]", profile.heroSummary || "");
-  setText("[data-card-name]", profile.name || "");
-  setText("[data-card-summary]", profile.cardSummary || "");
   setText("[data-last-updated]", profile.lastUpdated || "");
   setText("[data-footer-copy]", profile.footer || "");
 
@@ -113,15 +110,13 @@ function renderProfile(content) {
   const email = profile.email || "";
   setHref("[data-contact-email]", email ? `mailto:${email}` : "#", email || "Email");
 
-  const facts = document.querySelector("[data-profile-facts]");
-  if (facts) {
-    facts.innerHTML = "";
-    (content.facts || []).forEach((fact) => {
-      const item = createElement("li");
-      item.append(createElement("span", "", fact.label || ""));
-      item.append(createElement("strong", "", fact.value || ""));
-      facts.append(item);
-    });
+  const biography = document.querySelector("[data-profile-biography]");
+  if (biography) {
+    const paragraphs = [profile.heroSummary, profile.cardSummary]
+      .filter(Boolean)
+      .flatMap((text) => text.split(/\n\s*\n/))
+      .filter((text) => text.trim());
+    biography.replaceChildren(...paragraphs.map((text) => createElement("p", "", text.trim())));
   }
 }
 
