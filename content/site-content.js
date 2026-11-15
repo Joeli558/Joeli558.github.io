@@ -1,32 +1,18 @@
 window.SITE_CONTENT = {
-  "version": "2026-11-15-papers-gallery-v5",
+  "version": "2026-11-15-biography-v6",
   "profile": {
     "name": "Binghong Li",
     "brandMark": "BL",
-    "navSubtitle": "HKUST | Quantitative Marketing",
-    "heroKicker": "HKUST Graduate Researcher",
+    "navSubtitle": "University of Macau",
     "heroTitle": "Binghong Li",
-    "heroSummary": "My research combines quantitative marketing, natural language processing, and econometrics to understand decisions in digital and financial markets.",
-    "cardSummary": "Graduate study at The Hong Kong University of Science and Technology.",
     "photo": "assets/binghong-li.jpg",
     "email": "libinghong84@gmail.com",
     "lastUpdated": "2026-11-15",
-    "footer": "(c) 2026 Binghong Li"
+    "footer": "(c) 2026 Binghong Li",
+    "heroKicker": "PhD Candidate · University of Macau",
+    "heroSummary": "Binghong Li is a PhD candidate at the University of Macau. He holds a Bachelor of Economics and earned his Master of Science at The Hong Kong University of Science and Technology (HKUST), with a focus on quantitative marketing.",
+    "cardSummary": "His research combines quantitative marketing, natural language processing, and econometrics to study how information and algorithms shape consumer behavior and market outcomes. He is particularly interested in digital platforms, recommender systems, and the economic implications of AI."
   },
-  "facts": [
-    {
-      "label": "Focus",
-      "value": "Quantitative marketing, NLP, and econometrics"
-    },
-    {
-      "label": "Undergraduate",
-      "value": "Bachelor’s degree in economics"
-    },
-    {
-      "label": "Exchange",
-      "value": "New York University (NYU)"
-    }
-  ],
   "researchIntro": "I bring together quantitative marketing, natural language processing, and econometrics to study how information and algorithms shape decisions in digital and financial markets.",
   "momentsIntro": "Academic exchanges, classroom learning, and research communities.",
   "moments": [
@@ -142,16 +128,21 @@ window.SITE_CONTENT = {
       ]
     }
   ],
-  "educationIntro": "An academic foundation in economics and finance, informing my research in quantitative marketing, natural language processing, and econometrics.",
+  "educationIntro": "Training in economics and quantitative marketing, followed by doctoral research at the University of Macau.",
   "education": [
     {
-      "label": "Graduate Study",
+      "label": "Doctoral Study",
+      "title": "University of Macau",
+      "description": "PhD candidate, with research interests in quantitative marketing, natural language processing, and econometrics."
+    },
+    {
+      "label": "Master of Science",
       "title": "The Hong Kong University of Science and Technology",
-      "description": "Current graduate study at HKUST, with research interests in quantitative marketing, natural language processing, and econometrics."
+      "description": "Master of Science, with a focus on quantitative marketing."
     },
     {
       "label": "Undergraduate Study",
-      "title": "Bachelor’s degree in economics",
+      "title": "Bachelor of Economics",
       "description": "Undergraduate training in economics."
     },
     {
