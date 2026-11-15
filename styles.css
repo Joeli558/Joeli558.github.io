@@ -712,6 +712,31 @@ h3 {
   border-color: var(--line);
 }
 
+.paper-read-link {
+  gap: 10px;
+  border-color: transparent;
+  background: linear-gradient(115deg, #087c78, #087b8d);
+  color: #fff;
+  font-weight: 750;
+  box-shadow: 0 5px 16px rgba(8, 124, 120, 0.13);
+}
+
+.paper-read-link:hover {
+  box-shadow: 0 9px 24px rgba(8, 124, 120, 0.24);
+}
+
+.paper-read-icon {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+}
+
+.paper-read-link:focus-visible,
+.moment-photo-link:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 4px;
+}
+
 .tag-row {
   display: flex;
   flex-wrap: wrap;
@@ -752,21 +777,35 @@ h3 {
 }
 
 .moment-frame {
-  min-height: clamp(280px, 46vw, 520px);
-  background: var(--surface-strong);
+  height: clamp(320px, 42vw, 560px);
+  min-height: 0;
+  background: linear-gradient(135deg, var(--surface-strong), var(--surface));
 }
 
 .moment-frame img {
   width: 100%;
   height: 100%;
-  min-height: inherit;
-  object-fit: cover;
+  min-height: 0;
+  object-fit: contain;
   object-position: center;
   transition: transform 0.7s ease, opacity 0.25s ease;
 }
 
 .moment-viewer:hover .moment-frame img {
   transform: scale(1.03);
+}
+
+.moment-viewer:hover .moment-frame img[data-fit="contain"] {
+  transform: none;
+}
+
+.moment-photo-link {
+  justify-self: start;
+  gap: 9px;
+  margin-top: 18px;
+  border-color: var(--line);
+  background: var(--surface-strong);
+  color: var(--ink);
 }
 
 .moment-panel {
@@ -1544,7 +1583,7 @@ h3 {
 
   .segmented {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .segmented button {

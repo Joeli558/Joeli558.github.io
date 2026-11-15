@@ -176,13 +176,23 @@ function renderMoments(content) {
   const moments = content.moments || [];
   const image = document.querySelector("[data-moment-image]");
   const actions = document.querySelector("[data-moment-actions]");
+  const photoLink = document.querySelector("[data-moment-link]");
   if (!image || !actions || moments.length === 0) return;
+  if (photoLink && !photoLink.querySelector("svg")) {
+    photoLink.append(createSvgIcon("M7 17 17 7M7 7h10v10", "link-arrow"));
+  }
 
   function showMoment(index) {
     momentIndex = (index + moments.length) % moments.length;
     const active = moments[momentIndex];
     image.src = active.image || "";
-    image.alt = active.title || "Academic moment";
+    image.alt = active.alt || active.caption || active.title || "Academic moment";
+    image.style.objectFit = active.fit || "contain";
+    image.dataset.fit = active.fit || "contain";
+    if (photoLink) {
+      photoLink.href = active.image || "#";
+      photoLink.setAttribute("aria-label", `Open photo: ${active.title || "Academic moment"}`);
+    }
     setText("[data-moment-title]", active.title || "");
     setText("[data-moment-caption]", active.caption || "");
     actions.querySelectorAll("button").forEach((button, buttonIndex) => {
@@ -212,7 +222,6 @@ function renderMoments(content) {
 const PAPER_CATEGORIES = [
   ["published", "Published"],
   ["forthcoming", "Forthcoming"],
-  ["review", "Under Review"],
   ["working", "Working Papers"],
 ];
 
@@ -220,7 +229,6 @@ function paperCategory(paper) {
   const status = paper.status || "";
   if (/\bpublished\b/i.test(status)) return "published";
   if (/\bforthcoming\b/i.test(status)) return "forthcoming";
-  if (/review|revision/i.test(status)) return "review";
   return "working";
 }
 
@@ -298,16 +306,22 @@ function renderPapers(content) {
     body.append(tags);
 
     const actions = createElement("div", "paper-actions");
-    const detailLink = createElement("a", "button paper-detail-link", "Details");
+    const doi = paper.doi?.trim();
+    const pdf = paper.pdf?.trim();
+    const readUrl = pdf || (doi ? `https://doi.org/${doi}` : "");
+    if (readUrl) {
+      const readLink = createElement("a", "button paper-read-link");
+      readLink.href = readUrl;
+      readLink.target = "_blank";
+      readLink.rel = "noopener noreferrer";
+      readLink.setAttribute("aria-label", `${pdf ? "Read PDF" : "Read paper"}: ${paper.title}`);
+      readLink.append(createElement("span", "", pdf ? "Read PDF" : "Read paper"));
+      readLink.append(createSvgIcon("M7 17 17 7M7 7h10v10", "paper-read-icon"));
+      actions.append(readLink);
+    }
+    const detailLink = createElement("a", "button paper-detail-link", "View details");
     detailLink.href = `paper.html?id=${encodeURIComponent(paper.id || paper.title || "")}`;
     actions.append(detailLink);
-    const doi = paper.doi?.trim();
-    if (doi) {
-      const doiLink = createElement("a", "button paper-detail-link", "DOI");
-      doiLink.href = `https://doi.org/${doi}`;
-      doiLink.setAttribute("aria-label", `DOI for ${paper.title}`);
-      actions.append(doiLink);
-    }
     body.append(actions);
 
     card.append(body);

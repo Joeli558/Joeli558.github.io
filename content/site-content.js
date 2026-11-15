@@ -1,5 +1,5 @@
 window.SITE_CONTENT = {
-  "version": "2026-11-14-interactive-v4",
+  "version": "2026-11-15-papers-gallery-v5",
   "profile": {
     "name": "Binghong Li",
     "brandMark": "BL",
@@ -10,7 +10,7 @@ window.SITE_CONTENT = {
     "cardSummary": "Graduate study at The Hong Kong University of Science and Technology.",
     "photo": "assets/binghong-li.jpg",
     "email": "libinghong84@gmail.com",
-    "lastUpdated": "2026-11-14",
+    "lastUpdated": "2026-11-15",
     "footer": "(c) 2026 Binghong Li"
   },
   "facts": [
@@ -28,17 +28,19 @@ window.SITE_CONTENT = {
     }
   ],
   "researchIntro": "I bring together quantitative marketing, natural language processing, and econometrics to study how information and algorithms shape decisions in digital and financial markets.",
-  "momentsIntro": "A few academic moments from exchange study, classroom collaboration, and conference-style learning environments.",
+  "momentsIntro": "Academic exchanges, classroom learning, and research communities.",
   "moments": [
     {
       "image": "assets/background-auditorium.jpg",
       "title": "International exchange classroom",
-      "caption": "Group learning experience in a lecture hall setting."
+      "caption": "Group learning experience in a lecture hall setting.",
+      "fit": "contain"
     },
     {
       "image": "assets/background-classroom.jpg",
       "title": "Finance foundations seminar",
-      "caption": "Classroom discussion and project-based learning."
+      "caption": "Classroom discussion and project-based learning.",
+      "fit": "contain"
     }
   ],
   "research": [
@@ -64,7 +66,7 @@ window.SITE_CONTENT = {
       "shortTitle": "Econometrics"
     }
   ],
-  "papersIntro": "Published and forthcoming work on recommender systems, financial disclosure, and investor attention.",
+  "papersIntro": "Research on digital platforms, information, and market behavior. Read papers at the publisher or open available working-paper PDFs.",
   "papers": [
     {
       "id": "algorithmic-window-dressing",
@@ -107,6 +109,36 @@ window.SITE_CONTENT = {
       "tags": [
         "Broker attention",
         "Portfolio holdings"
+      ]
+    },
+    {
+      "id": "export-more-or-export-better",
+      "topic": "trade",
+      "topicLabel": "International Trade",
+      "status": "Working Paper | Under Revision",
+      "title": "Export More or Export Better? Evidence from China's Cross-Border E-Commerce Pilot Zones",
+      "meta": "Binghong Li, Yihan Wang | Economic Modelling",
+      "overview": "Examines export quantity and export quality in the context of China's Cross-Border E-Commerce Pilot Zones.",
+      "tags": [
+        "Cross-border e-commerce",
+        "Export quantity and quality",
+        "China"
+      ]
+    },
+    {
+      "id": "better-informed-worse-off",
+      "topic": "platforms",
+      "topicLabel": "Digital Platforms",
+      "status": "Working Paper | Under Revision",
+      "title": "Better Informed, Worse Off?",
+      "meta": "Binghong Li | Managerial and Decision Economics (MDE)",
+      "overview": "This paper studies how transaction commissions shape a marketplace’s pricing of AI demand forecasts. It examines sellers’ information acquisition, price competition, and welfare, with numerical analysis informed by Xianyu records.",
+      "pdf": "assets/papers/better-informed-worse-off.pdf",
+      "tags": [
+        "AI demand forecasts",
+        "Platform competition",
+        "Information acquisition",
+        "Welfare"
       ]
     }
   ],
